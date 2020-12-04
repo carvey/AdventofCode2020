@@ -34,7 +34,7 @@ def hgt_validation(height):
     if "cm" in height or "in" in height:
         # split up the hieght using cm or in as a delimeter and keep the delimeter
         # and filter out empty string produced by the split
-        height, unit = list(filter(None, re.split(r'(cm|in)', height)))
+        height, unit = filter(None, re.split(r'(cm|in)', height))
 
         if unit == 'cm' and int(height) in range(150, 194):
             return True
@@ -42,8 +42,6 @@ def hgt_validation(height):
         if unit == "in" and int(height) in range(59, 77):
             return True
 
-        return False
-    
     return False
 
 def hcl_validation(color):
@@ -99,7 +97,7 @@ for passport in passports:
         valid_passport_count1 += 1
         
         # 10/10 should never be done in prod code
-        if False not in list(map(lambda field_name: expected_fields[field_name](fields[field_name]), fields.keys())):
+        if False not in map(lambda field_name: expected_fields[field_name](fields[field_name]), fields.keys()):
             valid_passport_count2 += 1
         else:
             pass
