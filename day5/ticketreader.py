@@ -3,8 +3,6 @@ import sys
 with open(sys.argv[1]) as fle:
     seats_raw = filter(None, fle.read().split('\n'))
 
-seats = []
-
 
 class Seat:
 
@@ -42,9 +40,7 @@ class Seat:
         self.id = self.row * 8 + self.column
 
 
-for seat_code in seats_raw:
-    seat = Seat(seat_code)
-    seats.append(seat)
+seats = [Seat(seat_code) for seat_code in seats_raw]
 
 seat_ids = [seat.id for seat in seats]
 max_id = max(seat_ids)
