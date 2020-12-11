@@ -4,6 +4,7 @@ from itertools import combinations
 with open(sys.argv[1]) as nums_fle:
     nums = list(map(int, nums_fle.read().split()))
 
+# part 1
 special_num = None
 step = 25
 for i, num in enumerate(nums[25:]):
@@ -13,13 +14,11 @@ for i, num in enumerate(nums[25:]):
         special_num = num
         break
     
-def group(lst, start, size):
-    return lst[start : start + size]
-
+# part 2
 min_max_sum = None
 for start in range(0, len(nums)):
     for size in range(0, len(nums)):
-        groups = sum(group(nums, start, size))
+        groups = sum(nums[start : start + size])
 
         if groups == special_num:
             slce = nums[start:start+size]
